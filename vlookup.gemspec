@@ -28,9 +28,9 @@ Gem::Specification.new do |spec|
   end
   spec.files << "lib/vlookup.rb"
   spec.files << "lib/vlookup/validator.rb"
-  spec.files << "lib/vlookup/reader.rb"
-  spec.files << "lib/vlookup/writer.rb"
   spec.files << "lib/vlookup/processor.rb"
+  #spec.files << "lib/vlookup/reader.rb"
+  #spec.files << "lib/vlookup/writer.rb"
 
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

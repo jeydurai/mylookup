@@ -15,6 +15,9 @@ options_parser = OptionParser.new do |opts|
     opts.on("--righton RIGHTON", "Right Table's matching column") do |righton|
        options[:righton] = righton 
     end
+    opts.on("v", "--[no-]verbose", "Run verbosely") do |v|
+       options[:verbose] = v 
+    end
 end
 
 options_parser.parse!
