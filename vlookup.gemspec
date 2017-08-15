@@ -26,16 +26,16 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.files << "lib/vlookup.rb"
-  spec.files << "lib/vlookup/validator.rb"
-  spec.files << "lib/vlookup/processor.rb"
-  spec.files << "lib/vlookup/connector.rb"
+  spec.files = Dir.glob("{lib}/**/*")
+  #spec.files << "lib/vlookup.rb"
+  #spec.files << "lib/vlookup/validator.rb"
+  #spec.files << "lib/vlookup/processor.rb"
+  #spec.files << "lib/vlookup/connector.rb"
   #spec.files << "lib/vlookup/reader.rb"
   #spec.files << "lib/vlookup/writer.rb"
 
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  #spec.executables << 'vlookup'
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.15"
