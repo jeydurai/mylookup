@@ -1,0 +1,21 @@
+require 'vlookup'
+require 'optparse'
+
+options = {}
+options_parser = OptionParser.new do |opts|
+    opts.on("-l", "--left LEFT", "Path to the Left Table") do |left|
+       options[:left] = left 
+    end
+    opts.on("-r", "--right RIGHT", "Path to the Right Table") do |right|
+       options[:right] = right 
+    end
+    opts.on("--lefton LEFTON", "Left Table's matching column") do |lefton|
+       options[:lefton] = lefton 
+    end
+    opts.on("--righton RIGHTON", "Right Table's matching column") do |righton|
+       options[:righton] = righton 
+    end
+end
+
+options_parser.parse!
+Vlookup.run(options)
