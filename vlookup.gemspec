@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.files << "lib/vlookup.rb"
   spec.files << "lib/vlookup/validator.rb"
   spec.files << "lib/vlookup/processor.rb"
+  spec.files << "lib/vlookup/connector.rb"
   #spec.files << "lib/vlookup/reader.rb"
   #spec.files << "lib/vlookup/writer.rb"
 

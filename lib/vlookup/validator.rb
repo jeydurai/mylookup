@@ -1,5 +1,7 @@
 #= Validation module to checks all the base rules in input options
 
+require 'vlookup/connector'
+
 module Validator
 
     #== File Validator to validate the input paths of a file
@@ -7,6 +9,7 @@ module Validator
 
         def initialize(path)
             @path = path
+            @coll = File.split(@path)[1] # In case of not a collection, this will have extension as well
         end
 
         def validate
@@ -16,7 +19,12 @@ module Validator
                 if @path =~ /\./i
                     return false, "#{@path} is neither an excel file nor a MongoDB collection" 
                 else
-                    return true, "#{@path} may be a MongoDB collection"
+                    @mongo_conn = Connector::MongoConnector.new(@coll)
+                    unless @mongo_conn.collection_exists?
+                        return [false, "'#{@path}' collection in MongoDB does not exist"]
+                    else
+                        return true, "'#{@path}' is a MongoDB collection"
+                    end
                 end
             end
         end
