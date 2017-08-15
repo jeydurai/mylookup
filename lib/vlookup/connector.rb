@@ -25,7 +25,7 @@ module Connector
             recs({}) > 0
         end
 
-        public :recs, :collection_exists
+        public :recs, :collection_exists?
     end
 
 end 
