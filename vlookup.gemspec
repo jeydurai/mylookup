@@ -27,12 +27,6 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test|spec|features)/})
   end
   spec.files = Dir.glob("{bin,lib}/**/*")
-  #spec.files << "lib/vlookup.rb"
-  #spec.files << "lib/vlookup/validator.rb"
-  #spec.files << "lib/vlookup/processor.rb"
-  #spec.files << "lib/vlookup/connector.rb"
-  #spec.files << "lib/vlookup/reader.rb"
-  #spec.files << "lib/vlookup/writer.rb"
 
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -42,5 +36,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "rubyXL", "~> 3.3", ">= 3.3.26"
+  spec.add_development_dependency "roo", "~> 2.7", ">= 2.7.0"
   spec.add_development_dependency "mongo", "~> 2.4", ">= 2.4.1"
 end

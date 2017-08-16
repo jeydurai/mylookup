@@ -25,7 +25,27 @@ module Connector
             recs({}) > 0
         end
 
+        def field_exists? field
+            @coll.find_one({}).projection({ '_id' => 0 }).limit(1).collect { |doc| doc }[0].keys.include? field
+        end
+
         public :recs, :collection_exists?
     end
 
+    class ExcelReadConnector
+        require 'roo'
+        
+        def initialize(file_name)
+            @wb = Roo::Excelx.new(file_name) 
+            @sheets = @wb.sheets
+        end
+
+        def sheet_exists? sht_name
+            @sheets.include? sht_name
+        end
+
+        def column_exists? sht, col_name 
+            @wb.sheet(sht).row(1).include? col_name
+        end
+    end
 end 
