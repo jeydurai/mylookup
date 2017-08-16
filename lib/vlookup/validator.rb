@@ -35,8 +35,8 @@ module Validator
     #== MongoDB collection attributes and properties validator
     class MongoAttribValidator < Connector::MongoConnector
 
-        def initialize(coll_name, field)
-            super(coll_name)
+        def initialize(coll_name, db, field)
+            super(coll_name, db_name: db)
             @field = field
         end
 
@@ -55,9 +55,9 @@ module Validator
     #== File Validator to validate the input paths of a file
     class FileValidator
 
-        def initialize(path)
+        def initialize(path, coll: '')
             @path = path
-            @coll = File.split(@path)[1] # In case of not a collection, this will have extension as well
+            @coll = coll 
         end
 
         def validate
@@ -71,7 +71,8 @@ module Validator
                 if @path =~ /\./i
                     return false, "#{@path} is neither an excel file nor a MongoDB collection" 
                 else
-                    mongo_conn = Connector::MongoConnector.new(@coll)
+                    db = File.split(@path)[1]
+                    mongo_conn = Connector::MongoConnector.new(@coll, db_name: db)
                     unless mongo_conn.collection_exists?
                         return [false, "'#{@path}' collection in MongoDB does not exist"]
                     else
