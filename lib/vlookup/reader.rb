@@ -14,9 +14,9 @@ module FileReader
             @data = nil
         end
 
-        def read
+        def read(match: {}, hide: {}, q_meth: :find)
             aoa = @sht.parse(@col.to_sym => @col)
-            @data = aoa.collect { |item| item[@col.to_sym] }
+            @data = aoa.collect { |item| item[@col.to_sym].to_s.downcase }
             @data = @data.uniq
             return "Excel Data contains #{@data.size} row(s)\nExcel First Record => #{@data[0]}"
         end
@@ -35,11 +35,22 @@ module FileReader
             @data = [] 
         end
 
-        def read(qry: {}, hide: { '_id' => 0 })
-            @coll.find(qry).projection(hide).each do |doc|
-                @data = @data + [doc[@col]]
+        def read(hide: { '_id' => 0 }, q_meth: :agg, match: {})
+            if q_meth == :find
+                @coll.find(match).projection(hide).each do |doc|
+                    @data = @data + [doc[@col].to_s.downcase]
+                end
+                @data = @data.uniq
+            elsif q_meth == :agg
+                qry = [
+                    { '$match'   => match },
+                    { '$group'   => { '_id' => { @col => '$' + @col } } },
+                    { '$project' => { '_id' => 0, @col => '$_id.' + @col } }
+                ]
+                @coll.aggregate(qry).each do |doc|
+                    @data = @data + [doc[@col].to_s.downcase]
+                end
             end
-            @data = @data.uniq
             return "Mongo Data contains #{@data.size} row(s)\nMongo First Record => #{@data[0]}"
         end
 

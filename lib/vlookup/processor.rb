@@ -9,6 +9,7 @@ class Processor
        @verbose = opts[:verbose]
        @l_src, @r_src = opts[:l_src], opts[:r_src] 
        @l_reader, @r_reader = nil, nil
+       @l_data, @r_data, @matched, @unmatched = nil, nil, nil, nil
        if @l_src == :excel
            @l_reader = FileReader::Excel.new(@l_db, @l_tbl, @l_on)
        else
@@ -23,14 +24,31 @@ class Processor
 
     def process
         puts "Processing initiating..." 
+        read_data
+        vlookup
+    end
+
+    def vlookup
+        puts "Executing vlookup..."
+        @unmatched = @l_data - @r_data
+        @matched = @l_data - @unmatched
+        puts "[Info]: Left Table size: #{@l_data.size} row(s)"
+        puts "Matched: #{@matched.size} row(s) Unmatched: #{@unmatched.size} row(s)"
+        puts "Matched: #{(@matched.size.to_f*100/@l_data.size.to_f).round(2)}%"
+    end
+
+    def read_data
         puts "Reading Left Table data..."
         l_comment = @l_reader.read
+        @l_data = @l_reader.data
         puts "Reading Right Table data..."
         r_comment = @r_reader.read
+        @r_data = @r_reader.data
         puts "[Info]: LEFT =>#{l_comment}"
         puts "[Info]: RIGHT=>#{r_comment}"
     end
 
+    private :read_data, :vlookup
     public :process
 
 end
