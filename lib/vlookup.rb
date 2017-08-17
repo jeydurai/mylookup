@@ -18,14 +18,15 @@ module Vlookup
             :leftsheet  => opts[:leftsheet],
             :rightsheet => opts[:rightsheet],
             :verbose    => opts[:verbose],
-            :l_source   => l_src, 
-            :r_source   => r_src,
+            :l_src   => l_src, 
+            :r_src   => r_src,
         }
         validate_sources l_src, r_src, options
         processor = Processor.new(options)
         processor.process
     end
 
+    # Health check up on options entered
     def self.validate_options opts
         unless opts[:left]
             puts "[Error]: Left database/file name must be defined"
@@ -58,6 +59,7 @@ module Vlookup
         return true
     end
 
+    # Validates the existence of fields/sheets of the left and right tables
     def self.validate_sources l_src, r_src, ops
         l_path, l_tbl, l_col = ops[:left], ops[:leftsheet], ops[:lefton]
         r_path, r_tbl, r_col = ops[:right], ops[:rightsheet], ops[:righton]
@@ -79,13 +81,15 @@ module Vlookup
         end
     end
 
+    # Validates the existence of sheet and matching column in an excel file
     def self.validate_excel_attribs path, sht_name, col_name, src_type
         valid, sht_comment = validate_excel_sheet_existence sht_name, path 
         valid, col_comment = validate_excel_column_existence col_name, sht_name, path, src_type
         return sht_comment, col_comment
     end
 
-    # Validates the left option
+    # Validates and gives the type of the file whether it is an excel file or
+    # Mongo DB collection
     def self.source_type file_name, sht, what_tbl
         unless file_name
             puts "[Error]: #{what_tbl.to_s.capitalize} Table's path must be given"
