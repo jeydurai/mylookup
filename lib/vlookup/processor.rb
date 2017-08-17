@@ -1,4 +1,5 @@
 require 'vlookup/reader'
+require 'vlookup/writer'
 
 #= class containing the functionalities of handling the whole show
 class Processor
@@ -26,6 +27,7 @@ class Processor
         puts "Processing initiating..." 
         read_data
         vlookup
+        write_unmatched unless @unmatched.empty?
     end
 
     def vlookup
@@ -35,6 +37,11 @@ class Processor
         puts "[Info]: Left Table size: #{@l_data.size} row(s)"
         puts "Matched: #{@matched.size} row(s) Unmatched: #{@unmatched.size} row(s)"
         puts "Matched: #{(@matched.size.to_f*100/@l_data.size.to_f).round(2)}%"
+    end
+
+    def write_unmatched
+        writer = FileWriter::Excel.new('unmatched.xlsx', @unmatched, @l_on) 
+        writer.write
     end
 
     def read_data
@@ -48,7 +55,7 @@ class Processor
         puts "[Info]: RIGHT=>#{r_comment}"
     end
 
-    private :read_data, :vlookup
+    private :read_data, :vlookup, :write_unmatched
     public :process
 
 end
