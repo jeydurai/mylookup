@@ -1,5 +1,5 @@
-require 'vlookup/reader'
-require 'vlookup/writer'
+require 'mylookup/reader'
+require 'mylookup/writer'
 
 #= class containing the functionalities of handling the whole show
 class Processor
@@ -26,12 +26,12 @@ class Processor
     def process
         puts "Processing initiating..." 
         read_data
-        vlookup
+        mylookup
         write_unmatched unless @unmatched.empty?
     end
 
-    def vlookup
-        puts "Executing vlookup..."
+    def mylookup
+        puts "Executing mylookup..."
         @unmatched = @l_data - @r_data
         @matched = @l_data - @unmatched
         puts "[Info]: Left Table size: #{@l_data.size} row(s)"
@@ -55,7 +55,7 @@ class Processor
         puts "[Info]: RIGHT=>#{r_comment}"
     end
 
-    private :read_data, :vlookup, :write_unmatched
+    private :read_data, :mylookup, :write_unmatched
     public :process
 
 end

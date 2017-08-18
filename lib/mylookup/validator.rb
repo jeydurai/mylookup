@@ -1,6 +1,6 @@
 #= Validation module to checks all the base rules in input options
 
-require 'vlookup/connector'
+require 'mylookup/connector'
 
 module Validator
 

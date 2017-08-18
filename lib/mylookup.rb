@@ -1,9 +1,9 @@
-require "vlookup/version"
-require "vlookup/validator"
-require "vlookup/processor"
+require "mylookup/version"
+require "mylookup/validator"
+require "mylookup/processor"
 
 #= Entry point to startup the application
-module Vlookup
+module Mylookup
 
     # Entry point method that starts the whole app
     def self.run(opts)

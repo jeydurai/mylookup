@@ -1,4 +1,4 @@
-require 'vlookup/connector'
+require 'mylookup/connector'
 
 
 #= Contains funtionalities of reading data

@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "vlookup/version"
+require "mylookup/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "vlookup"
-  spec.version       = Vlookup::VERSION
+  spec.name          = "mylookup"
+  spec.version       = Mylookup::VERSION
   spec.authors       = ["jeyaraj"]
   spec.email         = ["jeyaraj.durairaj@gmail.com"]
 
-  spec.summary       = %q{Simulates Excel's Vlookup function}
-  spec.description   = %q{Does vlookup on Excel file or MongoDB collections}
-  spec.homepage      = "https://github.com/jeydurai/vlookup"
+  spec.summary       = %q{Simulates Excel's Mylookup function}
+  spec.description   = %q{Does mylookup on Excel file or MongoDB collections}
+  spec.homepage      = "https://github.com/jeydurai/mylookup"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
