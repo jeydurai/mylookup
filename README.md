@@ -1,15 +1,15 @@
-# Vlookup
+# Mylookup
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vlookup`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to mylookup gem! 
 
-TODO: Delete this and the text above, and describe your gem
+TODO: It simulates Excel vlookup in Ruby programming language 
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'vlookup'
+gem 'mylookup'
 ```
 
 And then execute:
@@ -18,11 +18,17 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install vlookup
+    $ gem install mylookup
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: It supports vlooking up with two Excel file, MongoDB collection or
+combination of both. It takes Excel filepath/MongoDB database as `:left` and `:right`, Excel
+sheetname/MongoDB collection name as `:leftsheet` and `:rightsheet` and `Matching column names` as `:lefton` and
+`:righton` as input. It reads both columns data as unique, changes their case
+into `:downcase` and executes `set difference`. The recorded
+unmatched/difference elements are written as Excel file in current working
+directory
 
 ## Development
 
@@ -32,7 +38,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vlookup. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mylookup. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,6 +46,6 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the Vlookup project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/vlookup/blob/master/CODE_OF_CONDUCT.md).
-"# vlookup" 
+Everyone interacting in the Mylookup project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/vlookup/blob/master/CODE_OF_CONDUCT.md).
+"# mylookup" 
 "# mylookup" 
