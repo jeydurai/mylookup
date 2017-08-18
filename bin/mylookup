@@ -1,4 +1,4 @@
-require 'vlookup'
+require 'mylookup'
 require 'optparse'
 
 options = {}
@@ -27,4 +27,4 @@ options_parser = OptionParser.new do |opts|
 end
 
 options_parser.parse!
-Vlookup.run(options)
+Mylookup.run(options)
