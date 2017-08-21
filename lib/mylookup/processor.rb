@@ -4,6 +4,8 @@ require 'mylookup/writer'
 #= class containing the functionalities of handling the whole show
 class Processor
 
+    attr_reader :unmatched
+
     def initialize(opts)
        @l_db, @l_tbl, @l_on = opts[:left], opts[:leftsheet], opts[:lefton]
        @r_db, @r_tbl, @r_on = opts[:right], opts[:rightsheet], opts[:righton]
@@ -23,6 +25,7 @@ class Processor
        end
     end
 
+    # Executes reading, lookup and writing the unmatched
     def process
         puts "Processing initiating..." 
         read_data
@@ -30,6 +33,14 @@ class Processor
         write_unmatched unless @unmatched.empty?
     end
 
+    # Processes [Reading and Lookup] without writing the unmatched
+    def process_without_writing
+        puts "Processing initiating..." 
+        read_data
+        mylookup
+    end
+
+    # Filters out the unmatched data
     def mylookup
         puts "Executing mylookup..."
         @unmatched = @l_data - @r_data
@@ -39,11 +50,13 @@ class Processor
         puts "Matched: #{(@matched.size.to_f*100/@l_data.size.to_f).round(2)}%"
     end
 
+    # Writes the unmatched data
     def write_unmatched
         writer = FileWriter::Excel.new('unmatched.xlsx', @unmatched, @l_on) 
         writer.write
     end
 
+    # Reads the Source data
     def read_data
         puts "Reading Left Table data..."
         l_comment = @l_reader.read
@@ -56,6 +69,6 @@ class Processor
     end
 
     private :read_data, :mylookup, :write_unmatched
-    public :process
+    public :process, :process_without_writing
 
 end
