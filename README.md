@@ -31,7 +31,7 @@ unmatched/difference elements are written as Excel file in current working
 directory
 
 ## What's new in this version
-Instead of writing the unmatched data on to the disc, we can deceive it in a
+Instead of writing the unmatched data on to the disc, we can receive it in a
 variable by enabling `:get` switch in command options
 
 ## Development
