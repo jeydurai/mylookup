@@ -21,8 +21,11 @@ options_parser = OptionParser.new do |opts|
     opts.on("--rightsheet RIGHTSHEET", "Right Table's sheet name") do |rightsheet|
        options[:rightsheet] = rightsheet 
     end
-    opts.on("v", "--[no-]verbose", "Run verbosely") do |v|
+    opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
        options[:verbose] = v 
+    end
+    opts.on("-g", "--[no-]get", "Receives data") do |g|
+       options[:get] = g 
     end
 end
 

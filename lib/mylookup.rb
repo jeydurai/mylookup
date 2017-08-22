@@ -23,7 +23,11 @@ module Mylookup
         }
         validate_sources l_src, r_src, options
         processor = Processor.new(options)
-        processor.process
+        unless opts[:get]
+            processor.process
+        else
+            processor.process_without_writing
+        end
     end
 
     # Health check up on options entered

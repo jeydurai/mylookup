@@ -30,6 +30,10 @@ into `:downcase` and executes `set difference`. The recorded
 unmatched/difference elements are written as Excel file in current working
 directory
 
+## What's new in this version
+Instead of writing the unmatched data on to the disc, we can deceive it in a
+variable by enabling `:get` switch in command options
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
